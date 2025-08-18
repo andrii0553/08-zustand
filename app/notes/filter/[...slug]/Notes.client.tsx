@@ -9,12 +9,11 @@ import { fetchNotes } from "@/lib/api";
 import type { Note } from "../../../../types/note";
 import type { FetchNotesResponse } from "@/lib/api";
 import SearchBox from "@/components/SearchBox/SearchBox";
-import Modal from "@/components/CreateNoteModal/CreateNoteModal";
 import Pagination from "@/components/Pagination/Pagination";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 type NotesClientProps = {
   initialData: FetchNotesResponse;
@@ -48,10 +47,6 @@ export default function NotesClient({ initialData, tag }: NotesClientProps) {
     initialData: currentPage === 1 && search === "" ? initialData : undefined,
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   const notes: Note[] = data?.notes ?? [];
   const totalPages: number = data?.totalPages ?? 1;
 
@@ -72,19 +67,14 @@ export default function NotesClient({ initialData, tag }: NotesClientProps) {
             onPageChange={setCurrentPage}
           />
         )}
-        <button className={css.button} onClick={openModal}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
       <Toaster position="top-center" />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {notes.length > 0 && <NoteList notes={notes} />}
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm onCloseModal={closeModal} />
-        </Modal>
-      )}
     </div>
   );
 }
