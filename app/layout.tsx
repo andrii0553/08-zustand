@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NoteHub",
     description: "An application to create, save and organize your notes",
-    url: "http:localhost:3000",
+    url: "http://localhost:3000",
     images: [
       {
-        url: "https:ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
         width: 1200,
         height: 630,
         alt: "NoteHub preview image",
