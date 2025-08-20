@@ -7,7 +7,6 @@ import css from "./NotesPage.module.css";
 import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
 import type { Note } from "../../../../types/note";
-import type { FetchNotesResponse } from "@/lib/api";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import Loader from "@/components/Loader/Loader";
@@ -16,11 +15,10 @@ import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
 type NotesClientProps = {
-  initialData: FetchNotesResponse;
   tag: string;
 };
 
-export default function NotesClient({ initialData, tag }: NotesClientProps) {
+export default function NotesClient({ tag }: NotesClientProps) {
   const [search, setSearch] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,7 +42,6 @@ export default function NotesClient({ initialData, tag }: NotesClientProps) {
     queryKey: ["notes", currentPage, search, tag],
     queryFn: () => fetchNotes(currentPage, 12, search, tag),
     placeholderData: keepPreviousData,
-    initialData: currentPage === 1 && search === "" ? initialData : undefined,
   });
 
   const notes: Note[] = data?.notes ?? [];

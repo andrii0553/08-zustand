@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import CreateNote from "./CreateNote";
 
 export const metadata: Metadata = {
-  title: "Create Note",
+  title: "NoteForm",
   description: "A page to create a new note ",
   openGraph: {
-    title: "Create Note",
+    title: "NoteForm",
     description: "A page to create a new note ",
     url: "http://localhost:3001/notes/action/create",
     siteName: "NoteHub",
