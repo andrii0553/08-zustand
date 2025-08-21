@@ -9,3 +9,4 @@ const Error = ({ error }: Props) => {
 };
 
 export default Error;
+/*пробний*/
