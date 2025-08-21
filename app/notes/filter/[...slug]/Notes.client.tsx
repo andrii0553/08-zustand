@@ -7,7 +7,7 @@ import css from "./NotesPage.module.css";
 import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
 import type { Note } from "../../../../types/note";
-import type { FetchNotesResponse } from "@/lib/api";
+/* import type { FetchNotesResponse } from "@/lib/api"; */
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import Loader from "@/components/Loader/Loader";
@@ -45,10 +45,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
     placeholderData: keepPreviousData,
   });
 
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const openModal = () => setIsModalOpen(true);
-  // const closeModal = () => setIsModalOpen(false);
-
   const notes: Note[] = data?.notes ?? [];
   const totalPages: number = data?.totalPages ?? 1;
 
@@ -77,11 +73,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {notes.length > 0 && <NoteList notes={notes} />}
-      {/* {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm onCloseModal={closeModal} />
-        </Modal>
-      )} */}
     </div>
   );
 }
